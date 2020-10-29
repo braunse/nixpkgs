@@ -30,6 +30,10 @@ stdenv.mkDerivation rec {
 
   enableParallelBuilding = true;
 
+  preConfigure = ''
+    patchShebangs .
+  '';
+
   preFixup = stdenv.lib.optionalString (aria2 != null)
                ''gappsWrapperArgs+=(--suffix PATH : "${aria2}/bin")'';
 
