@@ -3,7 +3,7 @@
   fetchFromGitHub,
   gfortran,
   cmake,
-  python2,
+  python3,
   shared ? true
 }:
 let
@@ -22,12 +22,13 @@ stdenv.mkDerivation {
     sha256 = "0sxnc97z67i7phdmcnq8f8lmxgw10wdwvr8ami0w3pb179cgrbpb";
   };
 
-  nativeBuildInputs = [ gfortran python2 cmake ];
+  nativeBuildInputs = [ gfortran python3 cmake ];
 
   cmakeFlags = [
     "-DCMAKE_Fortran_FLAGS=-fPIC"
     "-DLAPACKE=ON"
     "-DCBLAS=ON"
+    "-DBUILD_TESTING=ON"
   ]
   ++ optional shared "-DBUILD_SHARED_LIBS=ON";
 
